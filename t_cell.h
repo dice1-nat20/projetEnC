@@ -21,6 +21,7 @@ typedef struct t_list {
 
 typedef struct list_adjac {
     int taille;
-    t_list *adjac_sommets = (t_list*) malloc(taille*sizeof(t_list));
+    t_list *adjac_sommets;
 }list_adjac;
+
 #endif //T_CELL_H
