@@ -7,5 +7,7 @@ add_executable(TI_301_PJT
         main.c utils.c
         hasse.c
         t_cell.c
-        t_cell.h)
+        t_cell.h
+        lecture.c
+        lecture.h)
 
