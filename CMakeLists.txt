@@ -5,6 +5,7 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(TI_301_PJT
         main.c utils.c
-        sacha.c
-        hasse.c)
+        hasse.c
+        t_cell.c
+        t_cell.h)
 
