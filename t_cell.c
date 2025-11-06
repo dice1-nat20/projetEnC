@@ -10,6 +10,7 @@ t_cell* createCell(int sommet,float proba) {
     t_cell* newCell = (t_cell*) malloc(sizeof(t_cell));
     newCell->sommet = sommet;
     newCell->proba = proba;
+    newCell->next = NULL;
     return newCell;
 }
 
