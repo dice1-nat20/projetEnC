@@ -2,7 +2,7 @@
 #include "lecture.h"
 
 int main() {
-    list_adjac list = readGraph("data/exemple1.txt");
+    list_adjac list = readGraph("data/exemple1_from_chatGPT.txt");
     displayListAdjac(&list);
     verifMarkovGraph(&list);
     return 0;
