@@ -1,7 +1,8 @@
 #include <stdio.h>
-
+#include "lecture.h"
 
 int main() {
-    printf("Hello, World!\n");
+    list_adjac list = readGraph("data/exemple1.txt");
+    displayListAdjac(&list);
     return 0;
 }

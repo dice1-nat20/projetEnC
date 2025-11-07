@@ -10,6 +10,7 @@ t_cell* createCell(int sommet,float proba) {
     t_cell* newCell = (t_cell*) malloc(sizeof(t_cell));
     newCell->sommet = sommet;
     newCell->proba = proba;
+    newCell->next = NULL;
     return newCell;
 }
 
@@ -49,5 +50,8 @@ list_adjac* createListAdjac(int taille) {
     list_adjac* myAdjacList = (list_adjac*) malloc(sizeof(list_adjac));
     myAdjacList->taille = taille;
     myAdjacList->adjac_sommets = malloc(sizeof(t_list)*taille);
+    for (int i = 0; i<taille; i++) {
+        myAdjacList->adjac_sommets[i].head = NULL;
+    }
     return myAdjacList;
 }
