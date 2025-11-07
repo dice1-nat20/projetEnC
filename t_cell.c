@@ -31,7 +31,7 @@ void displayList(t_list* l) {
 
     t_cell* temporaryCell = l->head;
     while (temporaryCell != NULL) {
-        printf("@-> (%d, %f) ", temporaryCell->sommet, temporaryCell->proba);
+        printf("@-> (%d, %g) ", temporaryCell->sommet, temporaryCell->proba);
         temporaryCell = temporaryCell->next;
     }
     printf("\n");
@@ -71,7 +71,7 @@ void verifMarkovGraph(list_adjac* listeAdjacence){
     for (int i = 0; i < listeAdjacence->taille ; i++) {
         float probTotale = verifMarkovList(listeAdjacence->adjac_sommets+i);
         if (!(probTotale>=0.99 && probTotale<= 1)){
-            printf("La somme des probabilites du sommet %d est %f.\n",i+1, probTotale);
+            printf("La somme des probabilites du sommet %d est %g.\n",i+1, probTotale);
             isMarkov = 0;
         }
     }
