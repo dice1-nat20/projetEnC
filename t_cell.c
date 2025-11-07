@@ -38,7 +38,7 @@ void displayList(t_list* l) {
 }
 
 void displayListAdjac(list_adjac* la) {
-    printf("[");
+    printf("\n[");
     for (int i = 0; i < la->taille ; i++) {
         printf("Liste pour le sommet %d:", i+1);
         displayList(la->adjac_sommets+i);
