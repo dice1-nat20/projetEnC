@@ -50,5 +50,8 @@ list_adjac* createListAdjac(int taille) {
     list_adjac* myAdjacList = (list_adjac*) malloc(sizeof(list_adjac));
     myAdjacList->taille = taille;
     myAdjacList->adjac_sommets = malloc(sizeof(t_list)*taille);
+    for (int i = 0; i<taille; i++) {
+        myAdjacList->adjac_sommets[i].head = NULL;
+    }
     return myAdjacList;
 }
