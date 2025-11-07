@@ -1,5 +1,5 @@
 
-# **Project Graphes de Markov**
+# **Project Graphes de Markov** :chart_with_upwards_trend:
 
 
 ###  _Introduction_
