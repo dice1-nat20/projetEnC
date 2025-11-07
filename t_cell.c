@@ -30,7 +30,7 @@ void displayList(t_list* l) {
     printf("[head @] ");
 
     t_cell* temporaryCell = l->head;
-    while (temporaryCell->next != NULL) {
+    while (temporaryCell != NULL) {
         printf("@-> (%d, %f) ", temporaryCell->sommet, temporaryCell->proba);
         temporaryCell = temporaryCell->next;
     }
@@ -40,10 +40,10 @@ void displayList(t_list* l) {
 void displayListAdjac(list_adjac* la) {
     printf("[");
     for (int i = 0; i < la->taille ; i++) {
-        printf("Liste pour le sommet %d:", i);
+        printf("Liste pour le sommet %d:", i+1);
         displayList(la->adjac_sommets+i);
     }
-    printf("]");
+    printf("]\n");
 }
 
 list_adjac* createListAdjac(int taille) {
@@ -54,4 +54,27 @@ list_adjac* createListAdjac(int taille) {
         myAdjacList->adjac_sommets[i].head = NULL;
     }
     return myAdjacList;
+}
+
+float verifMarkovList(t_list* listeSommet) {
+    float probTotale = 0;
+    t_cell* temporaryCell = listeSommet->head;
+    while (temporaryCell != NULL) {
+        probTotale +=  temporaryCell->proba;
+        temporaryCell = temporaryCell->next;
+    }
+    return probTotale;
+}
+
+void verifMarkovGraph(list_adjac* listeAdjacence){
+    for (int i = 0; i < listeAdjacence->taille ; i++) {
+        float probTotale = verifMarkovList(listeAdjacence->adjac_sommets+i);
+        if (!(probTotale>=0.99 && probTotale<= 1)){
+            printf("Le graphe n est pas un graphe de Markov.\n");
+            printf("La somme des probabilites du sommet %d est %f.\n",i+1, probTotale);
+            return;
+        }
+        printf("Le graphe est un graphe de Markov. \n");
+        return;
+    }
 }
