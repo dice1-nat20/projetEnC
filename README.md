@@ -4,15 +4,15 @@
 
 ###  _Introduction_
 
->
+> Ce projet a pour objectif de nous permettre dans un premier temps de mettre en place des outils pour manipuler des graphes de Markov en C.
 >
 >
 
 ### _Etape 1_
 
->
->
->
+> Faites avec la plus grande assiduité, rapidement et bien avant la date limite.
+> Nous y avons appris de nombreuses informations sur les graphes de Markov.
+> 
 
 ### _Etape 2_
 
