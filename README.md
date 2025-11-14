@@ -14,8 +14,8 @@
 > Implémentation des graphes de Markov en C
 >> Fonctions liées aux types structurés t_cell et t_list.
 > Implémentation des fonctions usuelles liées aux graphes de Markov
->> Fonction de création d'un graphe.
->> Fonction vérifiant si un graphe donné est de Markov.
+>> Fonction de création d'un graphe.  
+>> Fonction vérifiant si un graphe donné est de Markov.  
 >> Fonction affichant un graphe.
 
 ### _Etape 2_
@@ -42,4 +42,4 @@
 
 - Manon Souchon--Garrigue : Chef d'équipe
 - Ulysse Coulzeau : Développeur Sénior
-- Sacha Bertaina--David : Responsable GitS
+- Sacha Bertaina--David : Responsable Git
