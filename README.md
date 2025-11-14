@@ -35,6 +35,6 @@
 
 ### _Membres du Groupe__
 
-Manon Souchon--Garrigue: 
+<p>Manon Souchon--Garrigue: 
 Ulysse Coulzeau: Développeur Sénior
-Sacha Bertaina--David: Responsable Git
+Sacha Bertaina--David: Responsable Git</p>
