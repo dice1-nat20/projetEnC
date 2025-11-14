@@ -40,6 +40,6 @@
 
 ### _Membres du Groupe__
 
-- Manon Souchon--Garrigue : Chef d'équipe
-- Ulysse Coulzeau : Développeur Sénior
-- Sacha Bertaina--David : Responsable Git
+- Manon Souchon--Garrigue : Impératrice éclairée
+- Ulysse Coulzeau : Grand magicien du code (ordre de Merlin)
+- Sacha Bertaina--David : Grand Sorcier de Git
