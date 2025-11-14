@@ -36,5 +36,6 @@ void displayListAdjac(list_adjac* la);
 
 list_adjac* createListAdjac(int taille);
 
+void verifMarkovGraph(list_adjac* listeAdjacence);
 
 #endif //T_CELL_H

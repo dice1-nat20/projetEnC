@@ -10,7 +10,7 @@ list_adjac readGraph(const char *filename) {
     FILE *file = fopen(filename, "rt"); // read-only, text
     int nbvert, depart, arrivee;
     float proba;
-    list_adjac liste_sommet;
+    list_adjac* liste_sommet;
     // declarer la variable pour la liste d’adjacence
     if (file==NULL)
     {
@@ -30,10 +30,10 @@ list_adjac readGraph(const char *filename) {
     {
         // on obtient, pour chaque ligne du fichier les valeurs
         // depart, arrivee, et proba
-        addCellHead(arrivee,proba,list_sommet->adjac_sommet+depart-1);
+        addCellHead(arrivee,proba,liste_sommet->adjac_sommets+depart-1);
         // Ajouter l’arête qui va de ‘depart’ à ‘arrivée’ avec la
         // probabilité ‘proba’ dans la liste d’adjacence
         }
     fclose(file);
-    return list_sommet;
+    return *liste_sommet;
 }

@@ -27,3 +27,27 @@ static char *getID(int i)
 
     return buffer;
 }
+
+void CreateMermaidGraph(list_adjac* listeAdjacence) {
+        FILE *f = fopen("exemple_valid_step3.txt", "w");
+    if (f == NULL) {
+        printf("Erreur de creation du fichier");
+        return;
+    }
+
+    fprintf(f, "---\nconfig:\nlayout: elk\ntheme: neo\nlook: neo\n---\n\nflowchart LR\n");
+    for (int i = 0; i < listeAdjacence->taille ; i++) {
+        fprintf(f,"%s((%d))\n",getID(i+1),i+1);
+    }
+    for (int i = 0; i < listeAdjacence->taille ; i++) {
+        t_cell* temporaryCell = listeAdjacence->adjac_sommets->head;
+        while (temporaryCell != NULL) {
+            fprintf(f, "\n%s -->|%g|", getID(i + 1), temporaryCell->proba);
+            fprintf(f, "%s", getID(temporaryCell->sommet));
+            temporaryCell = temporaryCell->next;
+        }
+    }
+    fclose(f);
+    printf("Fichier \"exemple_valid_step3.txt\" cree avec succes \n");
+    return;
+}
