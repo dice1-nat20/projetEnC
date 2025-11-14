@@ -10,15 +10,20 @@
 
 ### _Etape 1_
 
-> Faites avec la plus grande assiduité, rapidement et bien avant la date limite.
-> Nous y avons appris de nombreuses informations sur les graphes de Markov.
-> 
+> Découverte des graphes de Markov.
+> Implémentation des graphes de Markov en C
+>> Fonctions liées aux types structurés t_cell et t_list.
+> Implémentation des fonctions usuelles liées aux graphes de Markov
+>> Fonction de création d'un graphe.
+>> Fonction vérifiant si un graphe donné est de Markov.
+>> Fonction affichant un graphe.
 
 ### _Etape 2_
 
->
->
->
+> Découverte du regroupement de sommets en classes.
+> Découverte de l'algorithme de Tarjan
+>> Implémentation des structures et fonctions pour cet algorithme.
+> Découverte des diagramme de Hasse.
 
 ### _Etape 3_
 
