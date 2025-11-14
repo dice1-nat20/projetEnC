@@ -9,5 +9,7 @@ add_executable(TI_301_PJT
         #hasse.c
         t_cell.c
         lecture.c
+        tarjan.c
+        tarjan.h
 )
 
