@@ -152,4 +152,6 @@ t_partition* tarjan(list_adjac* Graph) {
             parcours(listeVertex[i],listeVertex,&num,stack,Graph,partition);
         }
     }
+    free(stack);
+    return partition;
 }

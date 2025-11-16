@@ -36,7 +36,7 @@ typedef struct {
     cellClasse * head;
 }t_partition;
 
-d_tergent_vertex * createD_tergent(int id, int numero);
+d_tergent_vertex * createD_tergent(int id);
 l_tergent_vertex * createL_tergent(list_adjac* Graph);
 void freeL_tergent(l_tergent_vertex* listeTergent, int taille);
 
