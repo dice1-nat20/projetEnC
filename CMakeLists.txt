@@ -6,10 +6,9 @@ set(CMAKE_C_STANDARD 11)
 add_executable(TI_301_PJT
         main.c
         utils.c
-        #hasse.c
+        hasse.c
         t_cell.c
         lecture.c
         tarjan.c
-        tarjan.h
 )
 
