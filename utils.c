@@ -39,8 +39,8 @@ void CreateMermaidGraph(list_adjac* listeAdjacence) {
     for (int i = 0; i < listeAdjacence->taille ; i++) {
         fprintf(f,"%s((%d))\n",getID(i+1),i+1);
     }
-    for (int i = 0; i < listeAdjacence->taille ; i++) {
-        t_cell* temporaryCell = listeAdjacence->adjac_sommets->head;
+    for (int i = 0; i < listeAdjacence->taille; i++) {
+        t_cell* temporaryCell = listeAdjacence->adjac_sommets[i].head;
         while (temporaryCell != NULL) {
             fprintf(f, "\n%s -->|%g|", getID(i + 1), temporaryCell->proba);
             fprintf(f, "%s", getID(temporaryCell->sommet));
