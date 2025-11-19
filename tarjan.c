@@ -48,11 +48,13 @@ d_tergent_vertex* pop_tergent(stack_tergent* stack) {
     return vertex;
 }
 
-t_classe* create_classe(const char* nom) {
+t_classe* create_classe(int numero) {
     t_classe* classe = malloc(sizeof *classe);
     if (!classe) return NULL;
     classe->head = NULL;
-    classe->nom = strdup(nom);
+    classe->idClasse = numero;
+    classe->nom = malloc(16);
+    snprintf(classe->nom, sizeof(classe->nom), "%c%d", 'C', numero);;
     return classe;
 }
 
@@ -103,7 +105,7 @@ void free_partition(t_partition* p) {
     free(p);
 }
 
-void parcours(d_tergent_vertex* vertex, l_tergent_vertex* listeVertex, int *num, stack_tergent* stack, list_adjac* Graph, t_partition* partition) {
+void parcours(d_tergent_vertex* vertex, l_tergent_vertex* listeVertex, int *num, stack_tergent* stack, list_adjac* Graph, t_partition* partition, int* nomClasse) {
     vertex->numeroTemp = *num;
     vertex->numAcces = *num;
     (*num)++;
@@ -113,7 +115,7 @@ void parcours(d_tergent_vertex* vertex, l_tergent_vertex* listeVertex, int *num,
     t_cell* temporaryCell = Graph->adjac_sommets[vertex->identifiant].head;
     while (temporaryCell != NULL) {
         if (listeVertex[temporaryCell->sommet-1]->numeroTemp == -1) {
-            parcours(listeVertex[temporaryCell->sommet-1],listeVertex,num,stack,Graph,partition);
+            parcours(listeVertex[temporaryCell->sommet-1],listeVertex,num,stack,Graph,partition, nomClasse);
 
             if (listeVertex[temporaryCell->sommet-1]->numAcces  <  vertex->numAcces) {
                 vertex->numAcces = listeVertex[temporaryCell->sommet-1]->numAcces;
@@ -130,7 +132,8 @@ void parcours(d_tergent_vertex* vertex, l_tergent_vertex* listeVertex, int *num,
     }
 
     if (vertex->numeroTemp == vertex->numAcces) {
-        t_classe* classe = create_classe("test");
+        t_classe* classe = create_classe(*nomClasse);
+        (*nomClasse)++;
         d_tergent_vertex * temporaryvertex;
         do {
             temporaryvertex = pop_tergent(stack);
@@ -145,11 +148,13 @@ void parcours(d_tergent_vertex* vertex, l_tergent_vertex* listeVertex, int *num,
 t_partition* tarjan(list_adjac* Graph) {
     l_tergent_vertex *listeVertex = createL_tergent(Graph);
     int num =0;
+    int nomClasse = 1;
     stack_tergent* stack= create_tergent_stack();
     t_partition * partition = create_partition();
+    partition->taille = Graph->taille;
     for (int i = 0; i<Graph->taille; i++){
         if (listeVertex[i]->numeroTemp == -1) {
-            parcours(listeVertex[i],listeVertex,&num,stack,Graph,partition);
+            parcours(listeVertex[i],listeVertex,&num,stack,Graph,partition,&nomClasse);
         }
     }
     free(stack);
@@ -162,7 +167,10 @@ void displayClasse(t_classe* classe) {
     printf("{");
     cellD_tergent * temporaryVertex = classe->head;
     while (temporaryVertex != NULL) {
-        printf("%d,",temporaryVertex->value->identifiant+1);
+        printf("%d",temporaryVertex->value->identifiant+1);
+        if (temporaryVertex->next != NULL) {
+            printf(",");
+        }
         temporaryVertex = temporaryVertex->next;
     }
     printf("}\n");
@@ -171,6 +179,7 @@ void displayClasse(t_classe* classe) {
 void displayPartition(t_partition* partition) {
     cellClasse * temporaryClass = partition->head;
     while (temporaryClass != NULL) {
+        printf(temporaryClass->value->nom);
         displayClasse(temporaryClass->value);
         temporaryClass = temporaryClass->next;
     }
