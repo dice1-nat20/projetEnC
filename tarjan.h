@@ -5,6 +5,7 @@
 #ifndef TARJAN_H
 #define TARJAN_H
 #include "t_cell.h"
+#include "stdio.h"
 
 typedef struct {
     int identifiant;
@@ -19,6 +20,7 @@ typedef struct tergentCell{
 }cellD_tergent;
 
 typedef struct {
+    int idClasse;
     char* nom;
     cellD_tergent * head;
 }t_classe;
@@ -33,12 +35,14 @@ typedef struct classCell {
 }cellClasse;
 
 typedef struct {
+    int taille;
     cellClasse * head;
 }t_partition;
+
 
 d_tergent_vertex * createD_tergent(int id);
 l_tergent_vertex * createL_tergent(list_adjac* Graph);
 void freeL_tergent(l_tergent_vertex* listeTergent, int taille);
-
+void displayPartition(t_partition* partition);
 t_partition* tarjan(list_adjac* Graph);
 #endif //TARJAN_H

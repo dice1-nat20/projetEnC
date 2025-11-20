@@ -1,7 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "utils.h"
 
 static char *getID(int i)
@@ -31,7 +28,7 @@ static char *getID(int i)
 void CreateMermaidGraph(list_adjac* listeAdjacence) {
         FILE *f = fopen("exemple_valid_step3.txt", "w");
     if (f == NULL) {
-        printf("Erreur de creation du fichier");
+        printf("Erreur de création du fichier");
         return;
     }
 
@@ -39,8 +36,8 @@ void CreateMermaidGraph(list_adjac* listeAdjacence) {
     for (int i = 0; i < listeAdjacence->taille ; i++) {
         fprintf(f,"%s((%d))\n",getID(i+1),i+1);
     }
-    for (int i = 0; i < listeAdjacence->taille ; i++) {
-        t_cell* temporaryCell = listeAdjacence->adjac_sommets->head;
+    for (int i = 0; i < listeAdjacence->taille; i++) {
+        t_cell* temporaryCell = listeAdjacence->adjac_sommets[i].head;
         while (temporaryCell != NULL) {
             fprintf(f, "\n%s -->|%g|", getID(i + 1), temporaryCell->proba);
             fprintf(f, "%s", getID(temporaryCell->sommet));
@@ -48,6 +45,40 @@ void CreateMermaidGraph(list_adjac* listeAdjacence) {
         }
     }
     fclose(f);
-    printf("Fichier \"exemple_valid_step3.txt\" cree avec succes \n");
+    printf("Fichier \"exemple_valid_step3.txt\" créé avec succès \n");
+    return;
+}
+
+void CreateMermaidPartition(t_partition * partition, t_hasse * hasse) {
+    FILE *f = fopen("exemple_valid_partition_hasse.txt", "w");
+    if (f == NULL) {
+        printf("Erreur de création du fichier");
+        return;
+    }
+
+    fprintf(f, "---\nconfig:\nlayout: elk\ntheme: neo\nlook: neo\n---\n\nflowchart LR\n");
+    cellClasse * temporaryClasse = partition->head;
+    while (temporaryClasse != NULL) {
+        fprintf(f,"%s(",getID(temporaryClasse->value->idClasse));
+        cellD_tergent * temporaryVertex = temporaryClasse->value->head;
+        fprintf(f,"\"{");
+        while (temporaryVertex != NULL) {
+            fprintf(f,"%d", temporaryVertex->value->identifiant+1);
+            if (temporaryVertex->next != NULL) {
+                fprintf(f,", ");
+            }
+            temporaryVertex = temporaryVertex->next;
+        }
+        fprintf(f,"}\")\n");
+        temporaryClasse = temporaryClasse->next;
+    }
+    cellLien * temporaryLien = hasse->head;
+    while (temporaryLien != NULL) {
+        fprintf(f,"\n%s --> ",getID(temporaryLien->value->idClasseDepart));
+        fprintf(f,"%s",getID(temporaryLien->value->idClasseArrivee));
+        temporaryLien =temporaryLien->next;
+    }
+    fclose(f);
+    printf("Fichier \"exemple_valid_partition_hasse.txt\" créé avec succès \n");
     return;
 }
