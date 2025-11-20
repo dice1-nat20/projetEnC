@@ -27,5 +27,6 @@ typedef struct {
 }t_hasse;
 
 t_hasse* hasse(t_partition* partition, list_adjac* Graph);
-
+void displayHasse(t_hasse * hasseGraph);
+void displayHasseCarac(t_hasse* hasseGraph, t_partition * partition);
 #endif

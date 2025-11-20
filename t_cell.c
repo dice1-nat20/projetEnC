@@ -71,7 +71,7 @@ void verifMarkovGraph(list_adjac* listeAdjacence){
     for (int i = 0; i < listeAdjacence->taille ; i++) {
         float probTotale = verifMarkovList(listeAdjacence->adjac_sommets+i);
         if (!(probTotale>=0.99 && probTotale<= 1)){
-            printf("La somme des probabilites du sommet %d est %g.\n",i+1, probTotale);
+            printf("La somme des probabilitées du sommet %d est %g.\n",i+1, probTotale);
             isMarkov = 0;
         }
     }
@@ -79,6 +79,6 @@ void verifMarkovGraph(list_adjac* listeAdjacence){
         printf("Le graphe est un graphe de Markov. \n");
         return;
     }
-    printf("Le graphe n est pas un graphe de Markov.\n");
+    printf("Le graphe n'est pas un graphe de Markov.\n");
     return;
 }
