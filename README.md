@@ -22,10 +22,10 @@ Par la suite, il nous amène à mettre au point des outils d'analyse des graphes
 > Découverte des classes et comment les déterminer.  
 > Découverte de l'algorithme de Tarjan  
 >> Implémentation des structures de données pour l'algorithme  
->> Implémentation des fonctions de bases pour les structures de données.  
+>> Implémentation des fonctions de bases pour les structures de données  
 >> Remise en question de notre compréhension de la réalité face à cette algorithme.  
 >> Implémentation de l'algorithme de Tarjan.  
-> Découverte des diagramme de Hasse.
+> Découverte des diagramme de Hasse.  
 > Découverte du recenssement de liens.  
 >> Implémentation des structures de données adaptées  
 >> Implémentation des fontions pour les structures de données    
