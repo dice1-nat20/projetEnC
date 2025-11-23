@@ -206,3 +206,14 @@ int classeSize(t_classe* classe) {
     }
     return size;
 }
+
+int isInClasse(t_classe* classe, int idVertex) {
+    cellD_tergent * temporaryCell = classe->head;
+    while (temporaryCell != NULL) {
+        if (idVertex == temporaryCell->value->identifiant) {
+            return 1;
+        }
+        temporaryCell = temporaryCell->next;
+    }
+    return 0;
+}

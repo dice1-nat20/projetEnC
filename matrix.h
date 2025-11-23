@@ -5,7 +5,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 #include "t_cell.h"
-#include <stdio.h>
+#include "tarjan.h"
 
 typedef struct {
     int nbLigne;
@@ -29,4 +29,6 @@ void displayMatrix(t_matrix * matrix);
 t_matrix * matrixPuissanceN(t_matrix * matBase, int puissance);
 
 int critèreDeDifférence(t_matrix* matBase);
+
+t_matrix * subMatrix(t_matrix * matrix, t_partition * partition, int compo_index);
 #endif //MATRIX_H
