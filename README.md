@@ -41,8 +41,8 @@ Implémentation de ce concept via des fonctions et calculs de matrices
   Fonctions de calculs matriciels.  
 Implémentation de propriétés des graphes de Markov.  
 Etape Bonus  
-  Défis n°1 :  
-  Défis n°2 :    
+  Défis n°1 :  Explication via des commentaires du code donné.  
+  Défis n°2 :  Non fait.  
 
 
 ### _Membres du Groupe__
