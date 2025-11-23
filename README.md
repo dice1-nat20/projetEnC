@@ -4,9 +4,8 @@
 
 ###  _Introduction_
 
-> Ce projet a pour objectif de nous permettre dans un premier temps de mettre en place des outils pour manipuler des graphes de Markov en C.
->
->
+Ce projet a pour objectif de nous permettre dans un premier temps de mettre en place des outils pour manipuler des graphes de Markov en C.  
+Par la suite, il nous amène à mettre au point des outils d'analyse des graphes, ainsi que d'autres types de données nous permettant une utilisation plus poussée des graphes.  
 
 ### _Etape 1_
 
