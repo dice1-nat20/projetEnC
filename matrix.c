@@ -146,6 +146,7 @@ int critèreDeDifférence(t_matrix* matBase) {
     if (i>=50) {
         printf("Cette Matrice ne remplie pas le critère de différence à n = 50;");
     }
+    printf("Matrice obtenue à n = %d : \n",i);
     displayMatrix(matMultiple);
     free_matrix(matMultiple);
     return i;
