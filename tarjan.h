@@ -45,4 +45,6 @@ l_tergent_vertex * createL_tergent(list_adjac* Graph);
 void freeL_tergent(l_tergent_vertex* listeTergent, int taille);
 void displayPartition(t_partition* partition);
 t_partition* tarjan(list_adjac* Graph);
+t_classe * searchClasse(t_partition * partition, int compo_index);
+int classeSize(t_classe* classe);
 #endif //TARJAN_H

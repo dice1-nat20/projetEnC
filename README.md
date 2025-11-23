@@ -4,32 +4,39 @@
 
 ###  _Introduction_
 
-> Ce projet a pour objectif de nous permettre dans un premier temps de mettre en place des outils pour manipuler des graphes de Markov en C.
->
->
+Ce projet a pour objectif de nous permettre dans un premier temps de mettre en place des outils pour manipuler des graphes de Markov en C.  
+Par la suite, il nous amène à mettre au point des outils d'analyse des graphes, ainsi que d'autres types de données nous permettant une utilisation plus poussée des graphes.  
 
 ### _Etape 1_
 
-> Découverte des graphes de Markov.
-> Implémentation des graphes de Markov en C
->> Fonctions liées aux types structurés t_cell et t_list.
-> Implémentation des fonctions usuelles liées aux graphes de Markov
+> Découverte des graphes de Markov.  
+> Implémentation des graphes de Markov en C  
+>> Fonctions liées aux types structurés donnés.  
+> Implémentation des fonctions usuelles liées aux graphes de Markov  
 >> Fonction de création d'un graphe.  
 >> Fonction vérifiant si un graphe donné est de Markov.  
->> Fonction affichant un graphe.
+>> Fonction affichant un graphe.  
 
 ### _Etape 2_
 
-> Découverte du regroupement de sommets en classes.
-> Découverte de l'algorithme de Tarjan
->> Implémentation des structures et fonctions pour cet algorithme.
-> Découverte des diagramme de Hasse.
+> Découverte des classes.  
+> Découverte de l'algorithme de Tarjan  
+>> Implémentation des structures et fonctions pour cet algorithme  
+>> Remise en question de notre compréhension du monde face à cette algorithme  
+>> Implémentation de l'algorithme de Tarjan.  
+> Découverte des diagramme de Hasse.  
+>> Implémentation des structures de données demandées  
+>> Implémentation des diagrammes de Hasse grace à ces structures de données.  
+> Partie Bonus.  
 
 ### _Etape 3_
 
->
->
->
+> Découverte de la Distribution, avec l'exemple de la météo.  
+> Implémentation de ce concept via des fonctions et calculs de matrices.  
+> Propriétés des graphes de Markov.  
+> Défis  
+>> Défis n°1 :  
+>> Défis n°2 :  
 
 ### _Conclusion_
 
