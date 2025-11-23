@@ -10,34 +10,34 @@
 
 ### _Etape 1_
 
-> Découverte des graphes de Markov.
-> Implémentation des graphes de Markov en C
->> Fonctions liées aux types structurés donnés.
-> Implémentation des fonctions usuelles liées aux graphes de Markov
+> Découverte des graphes de Markov.  
+> Implémentation des graphes de Markov en C  
+>> Fonctions liées aux types structurés donnés.  
+> Implémentation des fonctions usuelles liées aux graphes de Markov  
 >> Fonction de création d'un graphe.  
 >> Fonction vérifiant si un graphe donné est de Markov.  
->> Fonction affichant un graphe.
+>> Fonction affichant un graphe.  
 
 ### _Etape 2_
 
-> Découverte des classes.
-> Découverte de l'algorithme de Tarjan
->> Implémentation des structures et fonctions pour cet algorithme
->> Remise en question de notre compréhension du monde face à cette algorithme
->> Implémentation de l'algorithme de Tarjan.
-> Découverte des diagramme de Hasse.
->> Implémentation des structures de données demandées
->> Implémentation des diagrammes de Hasse grace à ces structures de données.
-> Partie Bonus.
+> Découverte des classes.  
+> Découverte de l'algorithme de Tarjan  
+>> Implémentation des structures et fonctions pour cet algorithme  
+>> Remise en question de notre compréhension du monde face à cette algorithme  
+>> Implémentation de l'algorithme de Tarjan.  
+> Découverte des diagramme de Hasse.  
+>> Implémentation des structures de données demandées  
+>> Implémentation des diagrammes de Hasse grace à ces structures de données.  
+> Partie Bonus.  
 
 ### _Etape 3_
 
-> Découverte de la Distribution, avec l'exemple de la météo.
-> Implémentation de ce concept via des fonctions et calculs de matrices.
-> Propriétés des graphes de Markov.
-> Défis
->> Défis n°1 : 
->> Défis n°2 : 
+> Découverte de la Distribution, avec l'exemple de la météo.  
+> Implémentation de ce concept via des fonctions et calculs de matrices.  
+> Propriétés des graphes de Markov.  
+> Défis  
+>> Défis n°1 :  
+>> Défis n°2 :  
 
 ### _Conclusion_
 
