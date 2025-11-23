@@ -5,16 +5,24 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 #include "t_cell.h"
+#include <stdio.h>
 
-float** create_empty_matrix(int,int);
+typedef struct {
+    int nbLigne;
+    int nbColone;
+    float** matrix;
+}t_matrix;
+t_matrix * create_empty_matrix(int,int);
 
-void free_matrix(float**,int);
+void free_matrix(t_matrix *);
 
-float **create_matrix_adjac(list_adjac);
+t_matrix *create_matrix_adjac(list_adjac *);
 
-float **create_matrix_zero(int,int);
+t_matrix *create_matrix_zero(int,int);
 
-float **matrix_copy(float**,int,int);
+t_matrix *matrix_copy(t_matrix *);
 
-float **multiple_matrix(float**mat_un,float**mat_deux,int n);
+t_matrix *multiple_matrix(t_matrix * mat_un,t_matrix * mat_deux);
+
+void displayMatrix(t_matrix * matrix);
 #endif //MATRIX_H

@@ -3,10 +3,11 @@
 #include "utils.h"
 #include "hasse.h"
 #include "utils.h"
+#include "matrix.h"
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
-    list_adjac * list1 = readGraph("data/exemple_custom1.txt");
+    list_adjac * list1 = readGraph("data/exemple_meteo.txt");
     displayListAdjac(list1);
     CreateMermaidGraph(list1);
     verifMarkovGraph(list1);
@@ -15,7 +16,9 @@ int main() {
     t_hasse * graphHasse = hasse(graphTarjan,list1);
     displayHasseCarac(graphHasse, graphTarjan);
     CreateMermaidPartition(graphTarjan, graphHasse);
-
+    t_matrix *matrix1 = create_matrix_adjac(list1);
+    t_matrix * mat1 = matrix_copy(matrix1);
+    displayMatrix(matrix1);
     return 0;
 
 }
