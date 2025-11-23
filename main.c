@@ -5,6 +5,11 @@
 #include "utils.h"
 #include "matrix.h"
 
+
+/* Fonction principale :
+   charge un graphe de Markov depuis un fichier, affiche et vérifie ses propriétés
+   (Markov, partition Tarjan, graphe de Hasse), construit la matrice de transition,
+   étudie la convergence globale puis par sous-matrice pour chaque classe. */
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     list_adjac * list1 = readGraph("data/exemple_meteo.txt");
