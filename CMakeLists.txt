@@ -10,5 +10,7 @@ add_executable(TI_301_PJT
         t_cell.c
         lecture.c
         tarjan.c
+        matrix.c
+        matrix.h
 )
 
