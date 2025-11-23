@@ -6,6 +6,7 @@
 
 Ce projet a pour objectif de nous permettre dans un premier temps de mettre en place des outils pour manipuler des graphes de Markov en C.  
 Par la suite, il nous amène à mettre au point des outils d'analyse des graphes, ainsi que d'autres types de données nous permettant une utilisation plus poussée des graphes.  
+Pour les strucutres de données, nous avons fait le choix d'utilisé principalement des listes chaînées lorsque le choix nous revenais.
 
 ### _Etape 1_
 
