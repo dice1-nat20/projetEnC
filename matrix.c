@@ -3,6 +3,7 @@
 //
 
 #include "matrix.h"
+#include "tarjan.h"
 
 
 t_matrix * create_empty_matrix(int nb_ligne, int nb_col) {
@@ -152,3 +153,11 @@ int critèreDeDifférence(t_matrix* matBase) {
     return i;
 }
 
+
+
+t_matrix * subMatrix(t_matrix * matrix, t_partition * partition, int compo_index) {
+    t_classe * classeExtracted = searchClasse(partition, compo_index);
+    int classeLength = classeSize(classeExtracted);
+    t_matrix * newMartix = create_matrix_zero(classeLength,classeLength);
+    return newMartix;
+}
