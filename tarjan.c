@@ -184,3 +184,36 @@ void displayPartition(t_partition* partition) {
         temporaryClass = temporaryClass->next;
     }
 }
+
+t_classe * searchClasse(t_partition * partition, int compo_index) {
+    cellClasse* temporaryClasse = partition->head;
+    while (temporaryClasse != NULL) {
+        if (temporaryClasse->value->idClasse == compo_index) {
+            return temporaryClasse->value;
+        }
+        temporaryClasse = temporaryClasse->next;
+    }
+    printf("La classe spécifiée n'a pas été trouvée.");
+    return NULL;
+}
+
+int classeSize(t_classe* classe) {
+    int size = 0;
+    cellD_tergent* temporaryVertex = classe->head;
+    while (temporaryVertex != NULL) {
+        size ++;
+        temporaryVertex = temporaryVertex->next;
+    }
+    return size;
+}
+
+int isInClasse(t_classe* classe, int idVertex) {
+    cellD_tergent * temporaryCell = classe->head;
+    while (temporaryCell != NULL) {
+        if (idVertex == temporaryCell->value->identifiant) {
+            return 1;
+        }
+        temporaryCell = temporaryCell->next;
+    }
+    return 0;
+}
