@@ -10,31 +10,37 @@ Par la suite, il nous amène à mettre au point des outils d'analyse des graphes
 ### _Etape 1_
 
 > Découverte des graphes de Markov.  
-> Implémentation des graphes de Markov en C  
->> Fonctions liées aux types structurés donnés.  
-> Implémentation des fonctions usuelles liées aux graphes de Markov  
->> Fonction de création d'un graphe.  
+> Implémentation des graphes de Markov en C
+>> Création des structures de données adéquates  
+>> Fonctions basiques liées aux structures de donnés.  
+> Implémentation des fonctions usuelles liées aux graphes de Markov   
 >> Fonction vérifiant si un graphe donné est de Markov.  
 >> Fonction affichant un graphe.  
 
 ### _Etape 2_
 
-> Découverte des classes.  
+> Découverte des classes et comment les déterminer.  
 > Découverte de l'algorithme de Tarjan  
->> Implémentation des structures et fonctions pour cet algorithme  
->> Remise en question de notre compréhension du monde face à cette algorithme  
+>> Implémentation des structures de données pour l'algorithme  
+>> Implémentation des fonctions de bases pour les structures de données.  
+>> Remise en question de notre compréhension de la réalité face à cette algorithme.  
 >> Implémentation de l'algorithme de Tarjan.  
-> Découverte des diagramme de Hasse.  
->> Implémentation des structures de données demandées  
+> Découverte des diagramme de Hasse.
+> Découverte du recenssement de liens.  
+>> Implémentation des structures de données adaptées  
+>> Implémentation des fontions pour les structures de données    
 >> Implémentation des diagrammes de Hasse grace à ces structures de données.  
-> Partie Bonus.  
+> Etape Bonus.  
 
 ### _Etape 3_
 
-> Découverte de la Distribution, avec l'exemple de la météo.  
-> Implémentation de ce concept via des fonctions et calculs de matrices.  
-> Propriétés des graphes de Markov.  
-> Défis  
+> Découverte de la Distribution.  
+> Découverte du calcul de l'évolution en temps discret.  
+> Exemple de la météo.  
+> Implémentation de ce concept via des fonctions et calculs de matrices  
+>> Fonctions de calculs matriciels.  
+> Implémentation de propriétés des graphes de Markov.  
+> Etape Bonus  
 >> Défis n°1 :  
 >> Défis n°2 :  
 
