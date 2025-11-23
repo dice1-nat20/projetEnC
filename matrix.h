@@ -25,4 +25,6 @@ t_matrix *matrix_copy(t_matrix *);
 t_matrix *multiple_matrix(t_matrix * mat_un,t_matrix * mat_deux);
 
 void displayMatrix(t_matrix * matrix);
+
+t_matrix * matrixPuissanceN(t_matrix * matBase, int puissance);
 #endif //MATRIX_H

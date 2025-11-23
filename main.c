@@ -17,8 +17,8 @@ int main() {
     displayHasseCarac(graphHasse, graphTarjan);
     CreateMermaidPartition(graphTarjan, graphHasse);
     t_matrix *matrix1 = create_matrix_adjac(list1);
-    t_matrix * mat1 = matrix_copy(matrix1);
-    displayMatrix(matrix1);
+    displayMatrix(matrixPuissanceN(matrix1,3));
+    displayMatrix(matrixPuissanceN(matrix1,7)); // correcte à des erreurs d'arrondi près
     return 0;
 
 }
