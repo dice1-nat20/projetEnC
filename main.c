@@ -27,7 +27,7 @@ int main() {
         t_classe * classeActuelle = currentClassCell->value;
         int id = classeActuelle->idClasse;
 
-        printf("\n--- Classe %s (ID: %d) ---\n", classeActuelle->nom, id);
+        printf("\n---- Classe %s (ID: %d) ----\n", classeActuelle->nom, id);
 
         t_matrix * subMat = subMatrix(matrix1, graphTarjan, id);
         if (subMat != NULL) {
@@ -38,5 +38,4 @@ int main() {
         currentClassCell = currentClassCell->next;
     }
     return 0;
-
 }
