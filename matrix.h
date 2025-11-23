@@ -1,12 +1,9 @@
-//
-// Created by manon on 20/11/2025.
-//
-
 #ifndef MATRIX_H
 #define MATRIX_H
 #include "t_cell.h"
 #include "tarjan.h"
 
+/* Structure de matrice de flottants : dimensions (lignes, colonnes) et tableau 2D de coefficients de type float. */
 typedef struct {
     int nbLigne;
     int nbColone;
