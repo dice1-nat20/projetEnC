@@ -79,10 +79,10 @@ t_matrix *multiple_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
     return mat;
 }
 
-t_matrix *diff_matrix(t_matrix *mat_un, t_matrix *mat_deux, int n) {
-    t_matrix *matrix = create_empty_matrix(n, n);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
+t_matrix *diff_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
+    t_matrix *matrix = create_empty_matrix(mat_un->nbLigne, mat_un->nbColone);
+    for (int i = 0; i < mat_un->nbLigne; i++) {
+        for (int j = 0; j < mat_un->nbColone; j++) {
             float x = mat_un->matrix[i][j] - mat_deux->matrix[i][j];
             matrix->matrix[i][j] = x < 0 ? -x : x;
         }
@@ -114,3 +114,37 @@ t_matrix * matrixPuissanceN(t_matrix * matBase, int puissance) {
     }
     return matMultiple;
 }
+
+int verifDifférence(t_matrix * mat_un, t_matrix * mat_deux) {
+    if (mat_un != NULL && mat_deux !=NULL) {
+        t_matrix* matDifference = diff_matrix(mat_un, mat_deux);
+        for (int i = 0; i < mat_un->nbLigne; i++) {
+            for (int j = 0; j < mat_un->nbColone; j++) {
+                if (matDifference->matrix[i][j]> 0.01) {
+                    free_matrix(matDifference);
+                    return 1;
+                }
+            }
+        }
+        free_matrix(matDifference);
+    }
+    return 0;
+}
+
+t_matrix *critèreDeDifférence(t_matrix* matBase) {
+    t_matrix * matMultiple = matrix_copy(matBase);
+    t_matrix * matPrecedente = NULL;
+    int i = 0;
+    while (i<50 && !verifDifférence(matMultiple, matPrecedente)){
+        t_matrix * tempMatrix = matPrecedente;
+        matPrecedente = matMultiple;
+        matMultiple = multiple_matrix(matBase, matMultiple);
+        free_matrix(tempMatrix);
+        i++;
+    }
+    if (i>=50) {
+        printf("Cette Matrice ne remplie pas le critère");
+    }
+    return matMultiple;
+}
+
