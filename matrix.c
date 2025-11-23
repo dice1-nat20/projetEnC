@@ -122,19 +122,20 @@ int verifDifférence(t_matrix * mat_un, t_matrix * mat_deux) {
             for (int j = 0; j < mat_un->nbColone; j++) {
                 if (matDifference->matrix[i][j]> 0.01) {
                     free_matrix(matDifference);
-                    return 1;
+                    return 0;
                 }
             }
         }
         free_matrix(matDifference);
+        return 1;
     }
     return 0;
 }
 
-t_matrix *critèreDeDifférence(t_matrix* matBase) {
+int critèreDeDifférence(t_matrix* matBase) {
     t_matrix * matMultiple = matrix_copy(matBase);
     t_matrix * matPrecedente = NULL;
-    int i = 0;
+    int i = 1;
     while (i<50 && !verifDifférence(matMultiple, matPrecedente)){
         t_matrix * tempMatrix = matPrecedente;
         matPrecedente = matMultiple;
@@ -143,8 +144,10 @@ t_matrix *critèreDeDifférence(t_matrix* matBase) {
         i++;
     }
     if (i>=50) {
-        printf("Cette Matrice ne remplie pas le critère");
+        printf("Cette Matrice ne remplie pas le critère de différence à n = 50;");
     }
-    return matMultiple;
+    displayMatrix(matMultiple);
+    free_matrix(matMultiple);
+    return i;
 }
 
