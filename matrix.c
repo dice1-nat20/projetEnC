@@ -1,11 +1,6 @@
-//
-// Created by manon on 20/11/2025.
-//
-
 #include "matrix.h"
 
-
-
+/* Alloue une matrice de flottants de taille nb_ligne x nb_col sans initialiser les valeurs. */
 t_matrix * create_empty_matrix(int nb_ligne, int nb_col) {
     t_matrix *mat = malloc(sizeof(t_matrix));
     float **tab = malloc(nb_ligne * sizeof(float*));
@@ -18,6 +13,7 @@ t_matrix * create_empty_matrix(int nb_ligne, int nb_col) {
     return mat;
 }
 
+/* Libère toute la mémoire associée à une matrice (lignes, tableau et structure). */
 void free_matrix(t_matrix *mat) {
     if (mat != NULL) {
         for (int i = 0; i < mat->nbLigne; i++) {
@@ -28,6 +24,7 @@ void free_matrix(t_matrix *mat) {
     }
 }
 
+/* Construit la matrice d’adjacence (probabilités) à partir d’une liste d’adjacence. */
 t_matrix * create_matrix_adjac(list_adjac * liste) {
     t_matrix * mat=create_matrix_zero(liste->taille,liste->taille);
     for (int i=0;i<liste->taille;i++) {
@@ -45,6 +42,7 @@ t_matrix * create_matrix_adjac(list_adjac * liste) {
     return mat;
 }
 
+/* Crée une matrice de taille donnée initialisée à 0. */
 t_matrix *create_matrix_zero(int ligne, int col) {
     t_matrix *mat = create_empty_matrix(ligne, col);
     for (int i = 0; i < ligne; i++) {
@@ -55,6 +53,7 @@ t_matrix *create_matrix_zero(int ligne, int col) {
     return mat;
 }
 
+/* Crée et renvoie une copie indépendante de la matrice passée en paramètre. */
 t_matrix *matrix_copy(t_matrix *mat) {
     t_matrix *copy = create_empty_matrix(mat->nbLigne, mat->nbColone);
     for (int i = 0; i < mat->nbLigne; i++) {
@@ -65,7 +64,9 @@ t_matrix *matrix_copy(t_matrix *mat) {
     return copy;
 }
 
+
 t_matrix *multiply_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
+/* Calcule le produit matriciel de deux matrices compatibles et renvoie la matrice résultat. */
     t_matrix *mat = create_empty_matrix(mat_un->nbLigne, mat_deux->nbColone);
     float x;
     for (int i = 0; i < mat_un->nbLigne; i++) {
@@ -80,6 +81,7 @@ t_matrix *multiply_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
     return mat;
 }
 
+/* Calcule la matrice des différences absolues entre deux matrices de même taille. */
 t_matrix *diff_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
     t_matrix *matrix = create_empty_matrix(mat_un->nbLigne, mat_un->nbColone);
     for (int i = 0; i < mat_un->nbLigne; i++) {
@@ -91,7 +93,7 @@ t_matrix *diff_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
     return matrix;
 }
 
-
+/* Affiche la matrice sur la sortie standard, ligne par ligne et formatée. */
 void displayMatrix(t_matrix * matrix) {
     for (int i=0;i<matrix->nbLigne;i++) {
         printf("(");
@@ -106,6 +108,7 @@ void displayMatrix(t_matrix * matrix) {
     printf("\n");
 }
 
+/* Calcule par produits successifs une puissance de la matrice de base et la renvoie. */
 t_matrix * matrixPuissanceN(t_matrix * matBase, int puissance) {
     t_matrix * matMultiple = matrix_copy(matBase);
     for (int i = 0; i<puissance; i++) {
@@ -116,6 +119,7 @@ t_matrix * matrixPuissanceN(t_matrix * matBase, int puissance) {
     return matMultiple;
 }
 
+/* Vérifie si la différence entre deux matrices est inférieure à 0.01 sur tous les coefficients. */
 int verifDifférence(t_matrix * mat_un, t_matrix * mat_deux) {
     if (mat_un != NULL && mat_deux !=NULL) {
         t_matrix* matDifference = diff_matrix(mat_un, mat_deux);
@@ -133,6 +137,7 @@ int verifDifférence(t_matrix * mat_un, t_matrix * mat_deux) {
     return 0;
 }
 
+/* Recherche la convergence des puissances de la matrice (critère de différence) jusqu’à stabilisation ou 50 itérations, puis affiche la matrice obtenue. */
 int critèreDeDifférence(t_matrix* matBase) {
     t_matrix * matMultiple = matrix_copy(matBase);
     t_matrix * matPrecedente = NULL;
@@ -153,8 +158,7 @@ int critèreDeDifférence(t_matrix* matBase) {
     return i;
 }
 
-
-
+/* Extrait la sous-matrice correspondant aux sommets d’une classe donnée de la partition. */
 t_matrix * subMatrix(t_matrix * matrix, t_partition * partition, int compo_index) {
     t_classe * classeExtracted = searchClasse(partition, compo_index);
     int classeLength = classeSize(classeExtracted);

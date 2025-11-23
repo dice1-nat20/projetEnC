@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "utils.h"
 
+
+/* Génère un identifiant alphabétique (A, B, ..., Z, AA, AB, ...) correspondant à l'indice passé (1, 2, ...). */
 static char *getID(int i)
 {
     // translate from 1,2,3, .. ,500+ to A,B,C,..,Z,AA,AB,...
@@ -25,6 +27,7 @@ static char *getID(int i)
     return buffer;
 }
 
+/* Crée un fichier Mermaid décrivant le graphe de Markov correspondant à la liste d'adjacence fournie. */
 void CreateMermaidGraph(list_adjac* listeAdjacence) {
         FILE *f = fopen("exemple_valid_step3.txt", "w");
     if (f == NULL) {
@@ -49,6 +52,7 @@ void CreateMermaidGraph(list_adjac* listeAdjacence) {
     return;
 }
 
+/* Crée un fichier Mermaid représentant la partition (classes d’équivalence) et le diagramme de Hasse associé aux relations entre classes. */
 void CreateMermaidPartition(t_partition * partition, t_hasse * hasse) {
     FILE *f = fopen("exemple_valid_partition_hasse.txt", "w");
     if (f == NULL) {

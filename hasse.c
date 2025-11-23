@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "hasse.h"
 
+
 /*
 void removeTransitiveLinks(t_link_array *p_link_array)
 {
@@ -48,6 +49,8 @@ void removeTransitiveLinks(t_link_array *p_link_array)
     }
 }
 */
+
+/* Construit un tableau associant à chaque sommet l’identifiant de la classe (composante fortement connexe) à laquelle il appartient. */
 int * createListeClasseOfVertex(t_partition* partition) {
     int* tabClasseVertex = malloc(partition->taille * sizeof(int));
 
@@ -71,6 +74,7 @@ int * createListeClasseOfVertex(t_partition* partition) {
     return tabClasseVertex;
 }
 
+/* Alloue et initialise une nouvelle arête (lien) entre deux classes pour le graphe de Hasse. */
 cellLien * createLien(int idClasseDepart, int idClasseArrivee) {
     cellLien* newLien = malloc(sizeof(cellLien));
     newLien->value = malloc(sizeof(t_lien));
@@ -80,6 +84,7 @@ cellLien * createLien(int idClasseDepart, int idClasseArrivee) {
     return newLien;
 }
 
+/* Ajoute à la liste des liens du graphe de Hasse une arête entre deux classes si elle n’existe pas déjà et que ce n’est pas une boucle. */
 void AddToHasse(t_hasse* listeLien, int idClasseDepart, int idClasseArrivee) {
     if (idClasseDepart != idClasseArrivee) {
         cellLien* temporaryLien = listeLien->head;
@@ -98,6 +103,7 @@ void AddToHasse(t_hasse* listeLien, int idClasseDepart, int idClasseArrivee) {
     }
 }
 
+/* Construit le graphe de Hasse des classes à partir de la partition et du graphe : relie les classes qui sont voisines via au moins un arc du graphe initial. */
 t_hasse* hasse(t_partition* partition, list_adjac* Graph) {
     t_hasse * hasseGraph = malloc(sizeof(t_hasse));
     hasseGraph->head = NULL;
@@ -127,6 +133,7 @@ t_hasse* hasse(t_partition* partition, list_adjac* Graph) {
     return hasseGraph;
 }
 
+/* Affiche toutes les arêtes du graphe de Hasse sous la forme “Cdepart -> Carrivee”. */
 void displayHasse(t_hasse * hasseGraph) {
     cellLien *tempHasse = hasseGraph->head;
     while (tempHasse != NULL) {
@@ -136,6 +143,7 @@ void displayHasse(t_hasse * hasseGraph) {
 
 }
 
+/* Détermine pour chaque classe (et les états qu’elle contient) si elle est persistante ou transitoire, affiche ces caractéristiques et indique si le graphe est irréductible. */
 void displayHasseCarac(t_hasse* hasseGraph, t_partition * partition) {
     cellClasse * temporaryClasse = partition->head;
     int irreductible = 0;

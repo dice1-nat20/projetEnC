@@ -1,11 +1,8 @@
-//
-// Created by manon on 24/10/2025.
-//
-
 #include "t_cell.h"
 #include <stdio.h>
 
 
+/* Crée et initialise une nouvelle cellule pour un sommet avec sa probabilité. */
 t_cell* createCell(int sommet,float proba) {
     t_cell* newCell = (t_cell*) malloc(sizeof(t_cell));
     newCell->sommet = sommet;
@@ -14,18 +11,22 @@ t_cell* createCell(int sommet,float proba) {
     return newCell;
 }
 
+/* Crée et renvoie une liste chaînée vide. */
 t_list createEmptyList() {
     t_list myList;
     myList.head = NULL;
     return myList;
 }
 
+
+/* Ajoute une nouvelle cellule (sommet, proba) en tête de la liste donnée. */
 void addCellHead(int sommet,float proba,t_list* l) {
     t_cell* newCell = createCell(sommet,proba);
     newCell->next = l->head;
     l->head = newCell;
 }
 
+/* Affiche le contenu d'une liste chaînée de cellules (sommet, probabilité). */
 void displayList(t_list* l) {
     printf("[head @] ");
 
@@ -37,6 +38,7 @@ void displayList(t_list* l) {
     printf("\n");
 }
 
+/* Affiche pour chaque sommet la liste de ses sommets adjacents avec leurs probabilités. */
 void displayListAdjac(list_adjac* la) {
     printf("\n[");
     for (int i = 0; i < la->taille ; i++) {
@@ -46,6 +48,7 @@ void displayListAdjac(list_adjac* la) {
     printf("]\n");
 }
 
+/* Crée et initialise une structure de listes d'adjacence de taille donnée. */
 list_adjac* createListAdjac(int taille) {
     list_adjac* myAdjacList = (list_adjac*) malloc(sizeof(list_adjac));
     myAdjacList->taille = taille;
@@ -56,6 +59,7 @@ list_adjac* createListAdjac(int taille) {
     return myAdjacList;
 }
 
+/* Calcule la somme des probabilités des arcs d'une liste d'adjacence donnée. */
 float verifMarkovList(t_list* listeSommet) {
     float probTotale = 0;
     t_cell* temporaryCell = listeSommet->head;
@@ -66,6 +70,7 @@ float verifMarkovList(t_list* listeSommet) {
     return probTotale;
 }
 
+/* Vérifie si le graphe d'adjacence est un graphe de Markov (sommes de probas ≈ 1 pour chaque sommet). */
 void verifMarkovGraph(list_adjac* listeAdjacence){
     int isMarkov = 1;
     for (int i = 0; i < listeAdjacence->taille ; i++) {
