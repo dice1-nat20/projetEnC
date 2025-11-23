@@ -65,7 +65,7 @@ t_matrix *matrix_copy(t_matrix *mat) {
     return copy;
 }
 
-t_matrix *multiple_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
+t_matrix *multiply_matrix(t_matrix *mat_un, t_matrix *mat_deux) {
     t_matrix *mat = create_empty_matrix(mat_un->nbLigne, mat_deux->nbColone);
     float x;
     for (int i = 0; i < mat_un->nbLigne; i++) {
@@ -110,7 +110,7 @@ t_matrix * matrixPuissanceN(t_matrix * matBase, int puissance) {
     t_matrix * matMultiple = matrix_copy(matBase);
     for (int i = 0; i<puissance; i++) {
         t_matrix * tempMatrix = matMultiple;
-        matMultiple = multiple_matrix(matBase, matMultiple);
+        matMultiple = multiply_matrix(matBase, matMultiple);
         free_matrix(tempMatrix);
     }
     return matMultiple;
@@ -140,7 +140,7 @@ int critèreDeDifférence(t_matrix* matBase) {
     while (i<50 && !verifDifférence(matMultiple, matPrecedente)){
         t_matrix * tempMatrix = matPrecedente;
         matPrecedente = matMultiple;
-        matMultiple = multiple_matrix(matBase, matMultiple);
+        matMultiple = multiply_matrix(matBase, matMultiple);
         free_matrix(tempMatrix);
         i++;
     }
@@ -179,4 +179,50 @@ t_matrix * subMatrix(t_matrix * matrix, t_partition * partition, int compo_index
         i++;
     }
     return newMatrix;
+}
+
+int gcd(int *vals, int nbvals) {//calcul du PGCD
+    if (nbvals == 0) return 0;
+    int result = vals[0];
+    for (int i = 1; i < nbvals; i++) {
+        int a = result;
+        int b = vals[i];
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        result = a;
+    }
+    return result;
+}
+int getPeriod(t_matrix sub_matrix)
+{
+    int n = sub_matrix.nbColone;
+    int *periods = (int *)malloc(n * sizeof(int));
+    int period_count = 0;
+    // power_matrix = sub_matrix^1 initialement
+    t_matrix *power_matrix =matrix_copy(&sub_matrix);
+    for (int  cpt = 1; cpt <= n; cpt++)
+    {
+        int diag_nonzero = 0;// vérifier si la diagonale contient un élément > 0
+        for (int i = 0; i < n; i++)
+        {
+            if (power_matrix->matrix[i][i] > 0.0f)
+            {
+                diag_nonzero = 1;
+            }
+        }
+        if (diag_nonzero) {
+            periods[period_count] = cpt;
+            period_count++;
+        }
+        t_matrix *result_matrix=multiply_matrix(power_matrix, &sub_matrix);
+        // Calcul de la puissance suivante sub_matrix^(cpt+1)
+        power_matrix = matrix_copy(result_matrix);
+    }
+
+    free(periods);
+    free_matrix(power_matrix);
+    return gcd(periods, period_count);
 }
