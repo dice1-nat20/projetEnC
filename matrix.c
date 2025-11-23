@@ -160,26 +160,23 @@ t_matrix * subMatrix(t_matrix * matrix, t_partition * partition, int compo_index
     int classeLength = classeSize(classeExtracted);
     t_matrix * newMatrix = create_matrix_zero(classeLength,classeLength);
     cellD_tergent * temporaryCell = classeExtracted->head;
-    int i = 0; // Index local pour la ligne dans la nouvelle matrice (0 à taille-1)
+    int i = 0;
     while (temporaryCell != NULL) {
 
-    cellD_tergent * temporaryNode = classeExtracted->head;
-    int j = 0; // Index local pour la colonne dans la nouvelle matrice
+        cellD_tergent * temporaryNode = classeExtracted->head;
+        int j = 0;
 
-    while (temporaryNode != NULL) {
-        // L'identifiant du sommet nous donne sa position dans la matrice originale (globale)
-        int globalRow = temporaryCell->value->identifiant;
-        int globalCol = temporaryNode->value->identifiant;
+        while (temporaryNode != NULL) {
+            int globalRow = temporaryCell->value->identifiant;
+            int globalCol = temporaryNode->value->identifiant;
+            newMatrix->matrix[i][j] = matrix->matrix[globalRow][globalCol];
 
-        // Copie de la valeur (probabilité) de la matrice originale vers la sous-matrice
-        newMatrix->matrix[i][j] = matrix->matrix[globalRow][globalCol];
+            temporaryNode = temporaryNode->next;
+            j++;
+        }
 
-        temporaryNode = temporaryNode->next;
-        j++;
-    }
-
-    temporaryCell = temporaryCell->next;
-    i++;
+        temporaryCell = temporaryCell->next;
+        i++;
     }
     return newMatrix;
 }
