@@ -124,12 +124,80 @@ t_hasse* hasse(t_partition* partition, list_adjac* Graph) {
         temporaryClass = temporaryClass->next;
     }
     free(listClasseOfVertex);
-    cellLien *temphasse = hasseGraph->head;
-    while (temphasse != NULL) {
-        printf("C%d -> C%d\n", temphasse->value->idClasseDepart, temphasse->value->idClasseArrivee);
-        temphasse = temphasse->next;
-    }
     return hasseGraph;
+}
+
+void displayHasse(t_hasse * hasseGraph) {
+    cellLien *tempHasse = hasseGraph->head;
+    while (tempHasse != NULL) {
+        printf("C%d -> C%d\n", tempHasse->value->idClasseDepart, tempHasse->value->idClasseArrivee);
+        tempHasse = tempHasse->next;
+    }
+
+}
+
+void displayHasseCarac(t_hasse* hasseGraph, t_partition * partition) {
+    cellClasse * temporaryClasse = partition->head;
+    int irreductible = 0;
+    if (temporaryClasse->next == NULL) {
+        irreductible = 1;
+    }
+    while (temporaryClasse != NULL) {
+        int persistante = 1;
+        cellLien *tempHasse = hasseGraph->head;
+        while (tempHasse != NULL) {
+            if (tempHasse->value->idClasseDepart == temporaryClasse->value->idClasse) {
+                persistante = 0;
+            }
+            tempHasse = tempHasse->next;
+        }
+        printf("\nLa classe C%d est ", temporaryClasse->value->idClasse);
+        if (persistante) {
+            printf("persistante - ");
+        }
+        else {
+            printf("transitoire - ");
+        }
+        cellD_tergent * temporaryVertex = temporaryClasse->value->head;
+        if (temporaryVertex->next == NULL) {
+            printf("l'état %d est ", temporaryVertex->value->identifiant+1);
+            if (persistante) {
+                printf("persistant – l'état %d est absorbant ;", temporaryVertex->value->identifiant+1);
+            }
+            else {
+                printf("transitoire ;");
+            }
+        }
+        else {
+            printf("les états ");
+            while (temporaryVertex != NULL) {
+                printf("%d",temporaryVertex->value->identifiant+1);
+                if (temporaryVertex->next != NULL) {
+                    if (temporaryVertex->next->next != NULL) {
+                        printf(", ");
+                    }
+                    else {
+                        printf(" et ");
+                    }
+                }
+                temporaryVertex = temporaryVertex->next;
+            }
+            if (persistante) {
+                printf(" sont persistants ;");
+            }
+            else {
+                printf(" sont transitoires ;");
+            }
+        }
+        temporaryClasse = temporaryClasse->next;
+    }
+    if (irreductible) {
+        printf("\nLe graphe de Markov est irréductible ;\n");
+    }
+    else {
+        printf("\nLe graphe de Markov n'est pas irréductible ;\n");
+    }
+    printf("\n");
 }
 
 
