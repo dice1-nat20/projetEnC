@@ -42,13 +42,7 @@ Implémentation de ce concept via des fonctions et calculs de matrices
 Implémentation de propriétés des graphes de Markov.  
 Etape Bonus  
   Défis n°1 :  
-  Défis n°2 :  
-
-### _Conclusion_
-
->
->
->
+  Défis n°2 :    
 
 
 ### _Membres du Groupe__
