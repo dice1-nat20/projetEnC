@@ -1,9 +1,8 @@
-//
-// Created by manon on 14/11/2025.
-//
 #include <string.h>
 #include "tarjan.h"
 
+
+/* Crée et initialise le tableau des sommets (structure tergent) à partir du graphe. */
 l_tergent_vertex* createL_tergent(list_adjac* Graph) {
     l_tergent_vertex* Tab = malloc(Graph->taille * sizeof(d_tergent_vertex*));
     for (int i = 0; i < Graph->taille; i++) {
@@ -16,7 +15,7 @@ l_tergent_vertex* createL_tergent(list_adjac* Graph) {
     return Tab;
 }
 
-
+/* Libère en mémoire le tableau de sommets tergent et met le pointeur à NULL. */
 void freeL_tergent(l_tergent_vertex* listeTergent, int taille){
     for (int i = 0; i<taille; i++) {
         free(listeTergent[i]);
@@ -25,6 +24,7 @@ void freeL_tergent(l_tergent_vertex* listeTergent, int taille){
     listeTergent = NULL;
 }
 
+/* Empile un sommet (vertex) dans la pile utilisée par l’algorithme de Tarjan. */
 void push_tergent(stack_tergent* stack, d_tergent_vertex* vertex) {
     cellD_tergent* cell = malloc(sizeof *cell);
     cell->value = vertex;
@@ -32,6 +32,7 @@ void push_tergent(stack_tergent* stack, d_tergent_vertex* vertex) {
     stack->top = cell;
 }
 
+/* Crée et initialise une pile vide pour l’algorithme de Tarjan. */
 stack_tergent* create_tergent_stack() {
     stack_tergent* stack = malloc(sizeof *stack);
     if (!stack) return NULL;
@@ -39,6 +40,7 @@ stack_tergent* create_tergent_stack() {
     return stack;
 }
 
+/* Dépile et renvoie le sommet en haut de la pile de Tarjan (ou NULL si pile vide). */
 d_tergent_vertex* pop_tergent(stack_tergent* stack) {
     if (!stack->top) return NULL;
     cellD_tergent* cell = stack->top;
@@ -48,6 +50,7 @@ d_tergent_vertex* pop_tergent(stack_tergent* stack) {
     return vertex;
 }
 
+/* Crée une nouvelle classe de composante fortement connexe identifiée par un numéro. */
 t_classe* create_classe(int numero) {
     t_classe* classe = malloc(sizeof *classe);
     if (!classe) return NULL;
@@ -58,6 +61,7 @@ t_classe* create_classe(int numero) {
     return classe;
 }
 
+/* Ajoute un sommet à la classe (composante fortement connexe) donnée. */
 void add_to_classe(t_classe* classe, d_tergent_vertex* v) {
     cellD_tergent* cell = malloc(sizeof *cell);
     if (!cell) return;
@@ -66,6 +70,7 @@ void add_to_classe(t_classe* classe, d_tergent_vertex* v) {
     classe->head = cell;
 }
 
+/* Libère en mémoire une classe et tous les sommets qu’elle contient. */
 void free_classe(t_classe* classe) {
     cellD_tergent* temporaryCell = classe->head;
     while (temporaryCell != NULL) {
@@ -79,6 +84,7 @@ void free_classe(t_classe* classe) {
     free(classe);
 }
 
+/* Crée une partition vide (liste de classes de composantes fortement connexes). */
 t_partition* create_partition() {
     t_partition* p = malloc(sizeof *p);
     if (!p) return NULL;
@@ -86,6 +92,7 @@ t_partition* create_partition() {
     return p;
 }
 
+/* Ajoute une classe à la partition (en tête de la liste chaînée). */
 void add_classe_to_partition(t_partition* p, t_classe* c) {
     cellClasse* cell = malloc(sizeof *cell);
     if (!cell) return;
@@ -94,6 +101,7 @@ void add_classe_to_partition(t_partition* p, t_classe* c) {
     p->head = cell;
 }
 
+/* Libère toute la partition et l’ensemble des classes qu’elle contient. */
 void free_partition(t_partition* p) {
     cellClasse* cur = p->head;
     while (cur) {
@@ -104,7 +112,7 @@ void free_partition(t_partition* p) {
     }
     free(p);
 }
-
+/* Parcours récursif de Tarjan sur un sommet : calcule numéros temporels, numéros d’accès et forme les composantes fortement connexes. */
 void parcours(d_tergent_vertex* vertex, l_tergent_vertex* listeVertex, int *num, stack_tergent* stack, list_adjac* Graph, t_partition* partition, int* nomClasse) {
     vertex->numeroTemp = *num;
     vertex->numAcces = *num;
@@ -144,7 +152,7 @@ void parcours(d_tergent_vertex* vertex, l_tergent_vertex* listeVertex, int *num,
     }
 }
 
-
+/* Applique l’algorithme de Tarjan sur le graphe pour calculer la partition en composantes fortement connexes. */
 t_partition* tarjan(list_adjac* Graph) {
     l_tergent_vertex *listeVertex = createL_tergent(Graph);
     int num =0;
@@ -162,7 +170,7 @@ t_partition* tarjan(list_adjac* Graph) {
     return partition;
 }
 
-
+/* Affiche le contenu d’une classe (ensemble des sommets) au format {1,2,...}. */
 void displayClasse(t_classe* classe) {
     printf("{");
     cellD_tergent * temporaryVertex = classe->head;
@@ -176,6 +184,7 @@ void displayClasse(t_classe* classe) {
     printf("}\n");
 }
 
+/* Affiche l’ensemble de la partition : nom de la classe puis ses sommets. */
 void displayPartition(t_partition* partition) {
     cellClasse * temporaryClass = partition->head;
     while (temporaryClass != NULL) {
@@ -185,6 +194,7 @@ void displayPartition(t_partition* partition) {
     }
 }
 
+/* Recherche et renvoie une classe de la partition par son identifiant logique. */
 t_classe * searchClasse(t_partition * partition, int compo_index) {
     cellClasse* temporaryClasse = partition->head;
     while (temporaryClasse != NULL) {
@@ -197,6 +207,7 @@ t_classe * searchClasse(t_partition * partition, int compo_index) {
     return NULL;
 }
 
+/* Calcule et renvoie la taille (nombre de sommets) d’une classe. */
 int classeSize(t_classe* classe) {
     int size = 0;
     cellD_tergent* temporaryVertex = classe->head;
@@ -207,6 +218,7 @@ int classeSize(t_classe* classe) {
     return size;
 }
 
+/* Indique si un sommet (idVertex) appartient à la classe donnée (1 si oui, 0 sinon). */
 int isInClasse(t_classe* classe, int idVertex) {
     cellD_tergent * temporaryCell = classe->head;
     while (temporaryCell != NULL) {

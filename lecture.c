@@ -1,11 +1,8 @@
-//
-// Created by manon on 24/10/2025.
-//
-
 #include "lecture.h"
-
 #include <stdio.h>
 
+
+/* Lit un fichier de description de graphe (nb sommets puis arcs: départ, arrivée, proba) et construit la structure de listes d’adjacence correspondante. */
 list_adjac* readGraph(const char *filename) {
     FILE *file = fopen(filename, "rt");
     if (!file) {
